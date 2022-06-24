@@ -2,7 +2,7 @@
 import React, {useState, useEffect} from 'react';
 //Additional import
 import axios from 'axios';
-//create component
+import Card from 'react-bootstrap/Card'//create component
 const App = () => {
 // LETS CREATE A VARIABLE TO HOLD OUR APPLICATION STATE
   const [users, setUsers] = useState ([]);
@@ -25,9 +25,25 @@ const App = () => {
     // console.log(typeof users.results)
     const usersList = users.map((element)=>{
         return (
-            <h1>
-                {element.name}
-            </h1>
+            <div>
+                {/* <h2>
+                {element.name.first}
+                </h2> */}
+                <Card className = 'cards'style={{ width: '18rem', borderStyle: 'groove' }}>
+  <Card.Img style={{borderRadius: '65px'}}variant="top" src={element.picture.large} />
+  <Card.Body>
+    <Card.Title><h2>{element.name.first} {element.name.last}</h2></Card.Title>
+    <Card.Text>
+        <h3>{element.location.street.number} {element.location.street.name} <br/>{element.location.city}, {element.location.state}<br/>{element.location.country}</h3>
+    </Card.Text>
+  </Card.Body>
+  {/* <ListGroup className="list-group-flush">
+    <ListGroupItem>Cras justo odio</ListGroupItem>
+    <ListGroupItem>Dapibus ac facilisis in</ListGroupItem>
+    <ListGroupItem>Vestibulum at eros</ListGroupItem> */}
+  {/* </ListGroup> */}
+</Card>
+            </div>
         )
     })
 
@@ -42,9 +58,9 @@ const App = () => {
     // })
     return (
         <div>
-            <h1>
+            <p>
                 {usersList}
-            </h1>
+            </p>
         </div>
     )
 }
